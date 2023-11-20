@@ -4,10 +4,11 @@ export async function getProducts() {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: '2022-11-15',
     })
+
     const products = await stripe.products.list()
     const productsWithPrices = await Promise.all(products.data.map( async (product) => {
-      const prices = await stripe.prices.list({product: product.id})
-      const ingredients = product.metadata.ingredients || ""
+    const prices = await stripe.prices.list({product: product.id})
+    const ingredients = product.metadata.ingredients || ""
     
         return {
           id: product.id,
@@ -33,6 +34,7 @@ export async function getProducts() {
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
       apiVersion: '2022-11-15',
     })
+    
     const product = await stripe.products.retrieve(id)
     const price = await stripe.prices.retrieve(product.default_price as string)
     const ingredients = product.metadata.ingredients || ""
