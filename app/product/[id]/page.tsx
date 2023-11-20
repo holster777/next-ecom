@@ -1,7 +1,8 @@
 import formatPrice from "@/util/priceFormat"
 import Image from "next/image"
+import { SearchParamsType } from "@/types/SearchParamsType"
 
-export default async function ProductPage({ searchParams }){
+export default async function ProductPage({ searchParams }: SearchParamsType){
 
     return (
         <div className="px-9 lg:px-16 py-16">
