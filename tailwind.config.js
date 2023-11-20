@@ -12,6 +12,9 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         fluid: "repeat(auto-fit, minmax(15rem,1fr))"
+      },
+      boxShadow: {
+        'purple': 'inset 0 -0.69em 0 rgb(216, 191, 216)'
       }
     },
   },

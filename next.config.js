@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: 'files.stripe.com',
         pathname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '**',
+      },
     ],
   },
 }
