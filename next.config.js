@@ -3,8 +3,19 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  images: { 
-   domains: ['lh3.googleusercontent.com', 'files.stripe.com']
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'files.stripe.com',
+        pathname: '**',
+      },
+    ],
   },
 }
 

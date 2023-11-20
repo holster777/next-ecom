@@ -2,6 +2,7 @@ import './globals.css'
 import Nav from './components/Nav'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
+import { bitter } from './fonts'
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +19,7 @@ const session = await getServerSession(authOptions)
 
   return (
     <html lang="en">
-      <body>
+      <body className={`${bitter.className} antialiased bg-[#F7F2EE]`}>
         <Nav user={session?.user} expires={session?.expires as string} />
         {children}
       </body>

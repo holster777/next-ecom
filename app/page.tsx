@@ -17,6 +17,7 @@ const getProducts = async() => {
         price: prices.data[0].unit_amount,
         image: product.images[0],
         currency: prices.data[0].currency,
+        description: product.description
       }
     
   }))
@@ -33,8 +34,8 @@ export default async function Home() {
 const products = await getProducts()
 
   return (
-    <div className="px-8">
-      <div className="grid grid-cols-3">
+    <div className="px-9 lg:px-16">
+      <div className="grid grid-cols-fluid gap-10 py-16">
       {products.map((product, index) => {
         return (
           <Product {...product} key={`product-${index}`} />
