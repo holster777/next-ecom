@@ -4,9 +4,10 @@ import Image from "next/image"
 import Link from "next/link"
 
 
-export default function Product({name, image, unit_amount, id, description}: ProductType) {
+export default function Product({name, image, unit_amount, id}: ProductType) {
+    
     return (
-        <Link href={{pathname: `/product/${id}`, query: { name, image, unit_amount, id, description }}}>
+        <Link href={{pathname: `/product/${id}`, query: { id }}}>
         <div className="flex flex-col">
             <div className="bg-white p-4">
                 <Image src={image} alt={name} width={600} height={900} className="w-full" />

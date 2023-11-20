@@ -12,7 +12,7 @@ export default function Nav({ user }: Session ) {
             <Link href="/"><h1 className="font-semibold text-xl text-black">MaeaSkin</h1></Link>
             <ul className="flex items-center gap-12">
                 {!user && (
-                    <li className="border border-black text-black px-4 py-2">
+                    <li className="border border-black text-black px-4 py-2 hover:bg-black hover:text-white">
                         <button onClick={() => signIn()}>
                             Sign In
                         </button>

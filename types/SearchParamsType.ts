@@ -9,6 +9,7 @@ type SearchParams = {
     image: string,
     unit_amount: number | null,
     description: string | null,
+    ingredients: string,
 
 }
 
