@@ -1,5 +1,5 @@
 import Product from './components/Product'
-import { getProducts } from '@/pages/api/stripe/products'
+import { getProducts } from '@/util/stripe/products'
 
 export default async function Home() {
 

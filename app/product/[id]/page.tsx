@@ -1,7 +1,7 @@
 import formatPrice from "@/util/priceFormat"
 import Image from "next/image"
 import { SearchParamsType } from "@/types/SearchParamsType"
-import { getProductById } from "@/pages/api/stripe/products"
+import { getProductById } from "@/util/stripe/products"
 
 export default async function ProductPage({ searchParams }: SearchParamsType){
 
