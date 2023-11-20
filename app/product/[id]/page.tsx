@@ -13,7 +13,7 @@ export default async function ProductPage({ searchParams }: SearchParamsType){
             <div className="flex flex-col col-span-2 py-16">
                 <h1 className="text-black text-4xl mb-3">{searchParams.name}</h1>
                 <p className="my-5 w-3/4 text-md">{searchParams.description}</p>
-                <p className="text-black font-semibold text-lg">{searchParams.price && formatPrice(searchParams.price)}</p>
+                <p className="text-black font-semibold text-lg">{searchParams.unit_amount && formatPrice(searchParams.unit_amount)}</p>
             </div>
             
             </div>
