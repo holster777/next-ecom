@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import { bitter, dmSerif, inter } from './fonts'
+import Hydrate from '@/app/components/Hydrate'
 
 export const metadata = {
   title: 'Create Next App',
@@ -20,7 +21,9 @@ const session = await getServerSession(authOptions)
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased bg-[#F7F2EE]`}>
-        <Nav user={session?.user} expires={session?.expires as string} />
+        <Hydrate>
+          <Nav user={session?.user} expires={session?.expires as string} />
+        </Hydrate>
         {children}
       </body>
     </html>

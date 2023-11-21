@@ -15,6 +15,9 @@ module.exports = {
       },
       boxShadow: {
         'purple': 'inset 0 -0.69em 0 rgb(216, 191, 216)'
+      },
+      colors: {
+        'purple': 'rgb(216, 191, 216)'
       }
     },
   },

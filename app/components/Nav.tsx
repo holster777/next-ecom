@@ -5,9 +5,14 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { dmSerif } from '../fonts'
+import Cart from './Cart'
+import { useCartStore } from '@/store'
+import { AiFillShopping } from 'react-icons/ai'
 
 
 export default function Nav({ user }: Session ) {
+
+    const cartStore = useCartStore()
     return (
         <nav className="px-9 lg:px-16 py-9 border-b border-black">
             <div className="grid grid-cols-3 items-center justify-between">
@@ -33,6 +38,10 @@ export default function Nav({ user }: Session ) {
             </div>
             <div>
                 <ul className="flex items-center justify-end gap-12">
+                    <li className="flex items-center text-3xl relative cursor-pointer" onClick={() => cartStore.toggleCart()}>
+                        <AiFillShopping />
+                        <span className="bg-purple text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex items-center justify-center">{cartStore.cart.length}</span>
+                    </li>
                     {!user && (
                         <li className="border border-black text-black px-4 py-2 hover:bg-black hover:text-white">
                             <button onClick={() => signIn()}>
@@ -42,12 +51,14 @@ export default function Nav({ user }: Session ) {
                     )}
                     {user && user.image && (
                         <li> 
-                            <Image src={user.image} alt={user.name as string} width={48} height={48} className="rounded-full" />
+                            <Image src={user.image} alt={user.name as string} width={36} height={36} className="rounded-full" />
                         </li>
                     )} 
                 </ul>
+                {cartStore.isOpen && <Cart />}
             </div>
             </div>
+
         </nav>
     )
 }

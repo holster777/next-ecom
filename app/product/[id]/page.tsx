@@ -2,6 +2,7 @@ import formatPrice from "@/util/priceFormat"
 import Image from "next/image"
 import { SearchParamsType } from "@/types/SearchParamsType"
 import { getProductById } from "@/util/stripe/products"
+import AddCart from "../AddToCart"
 
 export default async function ProductPage({ searchParams }: SearchParamsType){
 
@@ -20,6 +21,7 @@ export default async function ProductPage({ searchParams }: SearchParamsType){
                 <div>
                     <p className="text-black">{product.metadata.ingredients}</p>
                 </div>
+                <AddCart {...product}/>
             </div>
             
             </div>
