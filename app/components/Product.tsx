@@ -9,11 +9,11 @@ export default function Product({name, image, unit_amount, metadata, id}: Produc
     
     return (
         <Link href={{pathname: `/product/${id}`, query: { id }}}>
-        <div className="flex flex-col">
+        <div className="flex flex-col px-9">
             <div className="bg-white p-4">
                 <Image src={image} alt={name} width={600} height={900} className="w-full" />
             </div>
-            <p className="mt-5 text-xs uppercase ">{metadata.category}</p>
+            <p className="mt-7 text-xs uppercase ">{metadata.category}</p>
             <h1 className={`${inter.className} antialiased text-xl font-semibold mt-3 mb-3`}>{name}</h1>
             <p>{unit_amount && formatPrice(unit_amount)}</p>
         </div>

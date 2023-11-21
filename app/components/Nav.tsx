@@ -10,8 +10,8 @@ import { dmSerif } from '../fonts'
 export default function Nav({ user }: Session ) {
     return (
         <nav className="px-9 lg:px-16 py-9 border-b border-black">
-            <div className="grid grid-cols-3 w-100 items-center justify-between">
-            <div>
+            <div className="grid grid-cols-3 items-center justify-between">
+            <div className="hidden lg:block">
                 <ul className="flex gap-9 font-sm uppercase font-medium">
                     <li className="hover:opacity-60">
                         Blog
@@ -23,6 +23,10 @@ export default function Nav({ user }: Session ) {
                         Shop
                     </li>
                 </ul>
+            </div>
+            {/* TODO: MOB NAV */}
+            <div className="lg:hidden text-4xl">
+                =
             </div>
             <div className="flex justify-center">
                 <Link href="/"><h1 className={`${dmSerif.className} antialiased text-3xl text-black`}>maeaSkin</h1></Link>
