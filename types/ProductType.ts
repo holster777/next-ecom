@@ -10,5 +10,6 @@ export type ProductType = {
 }
 
 type MetadataType = {
-    ingredients: string
+    ingredients: string,
+    category: string,
 }

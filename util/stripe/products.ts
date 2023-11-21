@@ -9,6 +9,7 @@ export async function getProducts() {
     const productsWithPrices = await Promise.all(products.data.map( async (product) => {
     const prices = await stripe.prices.list({product: product.id})
     const ingredients = product.metadata.ingredients || ""
+    const category = product.metadata.category || ""
     
         return {
           id: product.id,
@@ -18,7 +19,7 @@ export async function getProducts() {
           image: product.images[0],
           currency: prices.data[0].currency,
           description: product.description,
-          metadata: { ingredients }
+          metadata: { ingredients, category }
         }
       
     }))
@@ -38,6 +39,7 @@ export async function getProducts() {
     const product = await stripe.products.retrieve(id)
     const price = await stripe.prices.retrieve(product.default_price as string)
     const ingredients = product.metadata.ingredients || ""
+    const category = product.metadata.category || ""
   
     const productData = {
     id: product.id,
@@ -47,7 +49,7 @@ export async function getProducts() {
     image: product.images[0],
     currency: price.currency,
     description: product.description,
-    metadata: { ingredients }
+    metadata: { ingredients, category }
     }
 
     return productData

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { inter } from "../fonts"
 
 
-export default function Product({name, image, unit_amount, id}: ProductType) {
+export default function Product({name, image, unit_amount, metadata, id}: ProductType) {
     
     return (
         <Link href={{pathname: `/product/${id}`, query: { id }}}>
@@ -13,7 +13,8 @@ export default function Product({name, image, unit_amount, id}: ProductType) {
             <div className="bg-white p-4">
                 <Image src={image} alt={name} width={600} height={900} className="w-full" />
             </div>
-            <h1 className={`${inter.className} antialiased text-lg font-semibold mt-5 mb-3`}>{name}</h1>
+            <p className="mt-5 text-xs uppercase ">{metadata.category}</p>
+            <h1 className={`${inter.className} antialiased text-xl font-semibold mt-3 mb-3`}>{name}</h1>
             <p>{unit_amount && formatPrice(unit_amount)}</p>
         </div>
         </Link>
