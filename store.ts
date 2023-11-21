@@ -2,14 +2,6 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { AddCartType } from './types/AddCartType'
 
-// type CartItem = {
-//     name: string,
-//     id: string,
-//     images?: string[],
-//     description?: string,
-//     unit_amount: number,
-//     quantity: number
-// }
 
 type CartState = {
     isOpen: boolean,
@@ -30,7 +22,7 @@ export const useCartStore = create<CartState>()(
                 const existingItem = state.cart.find(cartItem => cartItem.id === item.id)
                 if (existingItem) {
                     const updatedCart = state.cart.map((cartItem) => {
-                        if(cartItem.id === item.id) {
+                        if (cartItem.id === item.id && cartItem.quantity)  {
                             return {...cartItem, quantity: cartItem.quantity + 1}
                         }
                         return cartItem
