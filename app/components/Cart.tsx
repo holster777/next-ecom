@@ -27,7 +27,7 @@ export default function Cart() {
                     }
 
                 {/* CART ITEMS */}
-                {cartStore.onCheckout === 'cart' && (
+                {cartStore.onCheckout === "cart" && (
                     <>
                     {cartStore.cart.map((item) => (
                                     
@@ -61,9 +61,10 @@ export default function Cart() {
                 )}
 
                 {/* CHECKOUT PAGE */}
-                {cartStore.onCheckout === 'checkout' && 
-                <Checkout />
-                }
+                {cartStore.onCheckout === "checkout" && <Checkout />}
+                {cartStore.onCheckout === "checkout" && (
+                <button onClick={() => cartStore.setCheckout("cart")} className="text-sm font-bold pb-12">Back to cart</button>
+        )}
                 
             </motion.div>
         </motion.div>

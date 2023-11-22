@@ -23,7 +23,7 @@ export const useCartStore = create<CartState>()(
             cart: [],
             isOpen: false,
             paymentIntent: "",
-            onCheckout: 'cart',
+            onCheckout: "cart",
             toggleCart: () => set(( state ) => ({ isOpen: !state.isOpen })),
             addProduct: (item) => set((state) => {
                 const existingItem = state.cart.find(cartItem => cartItem.id === item.id)
