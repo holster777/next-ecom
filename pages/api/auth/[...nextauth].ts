@@ -22,8 +22,8 @@ export const authOptions: NextAuthOptions = {
             // Create Stripe Customer
             if (user.name && user.email) {
                 const customer = await stripe.customers.create({
-                    email: user.email,
-                    name: user.name,
+                    email: user.email || undefined,
+                    name: user.name || undefined,
                 })
             // Add Stripe Customer ID to database
                 await prisma.user.update({
@@ -32,6 +32,12 @@ export const authOptions: NextAuthOptions = {
             })
             }
   
+        }
+    },
+    callbacks: {
+        async session({session, user}){
+            session.user = user
+            return session
         }
     },
     secret: process.env.NEXTAUTH_SECRET,
