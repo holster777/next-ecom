@@ -8,6 +8,7 @@ import { dmSerif } from '../fonts'
 import Cart from './Cart'
 import { useCartStore } from '@/store'
 import { AiFillShopping } from 'react-icons/ai'
+import { AnimatePresence, motion } from 'framer-motion'
 
 
 export default function Nav({ user }: Session ) {
@@ -40,8 +41,12 @@ export default function Nav({ user }: Session ) {
                 <ul className="flex items-center justify-end gap-12">
                     <li className="flex items-center text-3xl relative cursor-pointer" onClick={() => cartStore.toggleCart()}>
                         <AiFillShopping />
-                        <span className="bg-purple text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex items-center justify-center">{cartStore.cart.length}</span>
-                    </li>
+                        <AnimatePresence>
+                            {cartStore.cart.length > 0 &&
+                                <motion.span animate={{scale: 1}} initial={{scale: 0}} className="bg-purple text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex items-center justify-center">{cartStore.cart.length}</motion.span>
+                            }
+                        </AnimatePresence>
+                        </li>
                     {!user && (
                         <li className="border border-black text-black px-4 py-2 hover:bg-black hover:text-white">
                             <button onClick={() => signIn()}>
@@ -55,7 +60,9 @@ export default function Nav({ user }: Session ) {
                         </li>
                     )} 
                 </ul>
-                {cartStore.isOpen && <Cart />}
+                <AnimatePresence>
+                    {cartStore.isOpen && <Cart />}
+                </AnimatePresence>
             </div>
             </div>
 

@@ -3,5 +3,11 @@ export type AddCartType = {
     image: string,
     id: string,
     quantity?: number | undefined,
-    unit_amount: number | null
+    unit_amount: number | null,
+    metadata: MetDataType
+}
+
+type MetDataType = {
+    ingredients: string, 
+    category: string
 }

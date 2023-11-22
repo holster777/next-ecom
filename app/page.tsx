@@ -22,13 +22,13 @@ export default function Home() {
           <Link href="/our-mission" className="mt-9">Learn More</Link>
         </div>
       </div>
-        <div className="bg-sand h-16 w-100 flex items-center justify-center">
-            <div className="flex items-center justify-center text-white text-lg">
-                <p className="flex gap-7">
+        <div className="bg-sand px-9 h-16 w-100 flex items-center justify-center">
+            <div className="flex items-center justify-center text-white lg:text-lg">
+                <p className="flex gap-3 lg:gap-7">
                   <span className=" gap-7 flex items-center justify-center">
                     Vegan
                   </span>
-                  <span className="gap-7 flex items-center justify-center">
+                  <span className="gap-3 lg:gap-7 flex items-center justify-center">
                   <PiPlantFill />
                     Cruelty Free
                   <PiPlantFill />

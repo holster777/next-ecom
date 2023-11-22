@@ -4,13 +4,14 @@ import { useCartStore } from "@/store";
 import { AddCartType } from "@/types/AddCartType";
 
 
-export default function AddToCart({name, id, image, unit_amount, quantity,}: AddCartType){
+
+export default function AddToCart({name, id, image, unit_amount, quantity, metadata}: AddCartType){
 
     const cartStore = useCartStore()
 
     return (
         <>
-        <button onClick={() => cartStore.addProduct({name, id, image, unit_amount, quantity})} className="my-12 text-white bg-black py-2 px-5 font-medium">Add to cart</button>
+        <button onClick={() => cartStore.addProduct({name, id, image, unit_amount, quantity, metadata})} className="my-12 text-white bg-black py-2 px-5 font-medium">Add to cart</button>
         </>
     )
 }
