@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { dmSerif } from '../fonts'
-import Cart from './Cart'
+import Cart from './checkout/Cart'
 import { useCartStore } from '@/store'
 import { AiFillShopping } from 'react-icons/ai'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -55,8 +55,10 @@ export default function Nav({ user }: Session ) {
                         </li>
                     )}
                     {user && user.image && (
-                        <li> 
-                            <Image src={user.image} alt={user.name as string} width={36} height={36} className="rounded-full" />
+                        <li>
+                            <Link href="/account">
+                                <Image src={user.image} alt={user.name as string} width={36} height={36} className="rounded-full" />
+                            </Link>
                         </li>
                     )} 
                 </ul>

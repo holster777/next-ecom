@@ -4,9 +4,11 @@ import Image from 'next/image'
 import { useCartStore } from '@/store'
 import formatPrice from '@/util/priceFormat'
 import {IoAddCircle, IoRemoveCircle } from 'react-icons/io5'
+import { FaArrowLeft } from "react-icons/fa";
 import { motion} from 'framer-motion'
 import { RxCross2 } from "react-icons/rx";
 import Checkout from './Checkout'
+import OrderConfirmed from './OrderConfirmed'
 
 export default function Cart() {
     const cartStore = useCartStore()
@@ -16,13 +18,14 @@ export default function Cart() {
     }, 0)
     
     return (
+        <>
         <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={()=> cartStore.toggleCart()} className="fixed w-full h-screen left-0 top-0 bg-black/25">
             <motion.div layout onClick={(e) => e.stopPropagation()} className="bg-[#F7F2EE] absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-scroll text-black">
                 <div className="flex justify-between items-center">
                 <h1 className="font-semibold text-lg">Shopping Cart</h1>
                 <RxCross2 className="font-semibold text-xl" onClick={() => cartStore.toggleCart()} />
                 </div>
-                    {!cartStore.cart.length && 
+                    {!cartStore.cart.length && cartStore.onCheckout === "cart" &&
                         <h3 className="mt-5">No items in cart</h3>
                     }
 
@@ -61,12 +64,19 @@ export default function Cart() {
                 )}
 
                 {/* CHECKOUT PAGE */}
-                {cartStore.onCheckout === "checkout" && <Checkout />}
-                {cartStore.onCheckout === "checkout" && (
-                <button onClick={() => cartStore.setCheckout("cart")} className="text-sm font-bold pb-12">Back to cart</button>
-        )}
+                {cartStore.onCheckout === "checkout" && 
+                <>
+                <Checkout />
+                <button onClick={() => cartStore.setCheckout("cart")} className="text-sm font-medium mt-7 flex gap-3 items-center"><FaArrowLeft /> Back to cart</button>
+                </>
+                }
+
+                {/* ORDER CONFIRMED PAGE */}
+
+                {cartStore.onCheckout === "success" && <OrderConfirmed />}
                 
             </motion.div>
         </motion.div>
+        </>
     )
 }
