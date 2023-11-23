@@ -3,7 +3,9 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './auth/[...nextauth]'
 import { AddCartType } from '@/types/AddCartType'
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from 'prisma/prisma-client'
+
+
 
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -11,6 +13,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 })
 
 const prisma = new PrismaClient()
+
 
 const calculateOrderAmount = (items: AddCartType[]) => {
 
@@ -21,7 +24,7 @@ const calculateOrderAmount = (items: AddCartType[]) => {
     return totalPrice
 }
 
-export default  async function handler(req: NextApiRequest, res: NextApiResponse){
+export default async function handler(req: NextApiRequest, res: NextApiResponse){
 
     // Get User
     const userSession = await getServerSession(req, res, authOptions)
@@ -42,7 +45,7 @@ export default  async function handler(req: NextApiRequest, res: NextApiResponse
         amount: calculateOrderAmount(items),
         currency: 'gbp',
         status: 'pending',
-        payment_intent_id: payment_intent_id,
+        paymentIntentId: payment_intent_id,
         products: {
             create: items.map((item: AddCartType) => ({
                 name: item.name,
@@ -106,7 +109,7 @@ export default  async function handler(req: NextApiRequest, res: NextApiResponse
             automatic_payment_methods: {enabled: true}
         })
         
-        orderData.payment_intent_id = paymentIntent.id
+        orderData.paymentIntentId = paymentIntent.id
 
         const newOrder = await prisma.order.create({
             data: orderData

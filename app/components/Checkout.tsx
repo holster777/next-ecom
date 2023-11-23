@@ -15,23 +15,25 @@ export default function Checkout(){
     const [clientSecret, setClientSecret] = useState('')
 
     useEffect(() => {
-    fetch('/api/create-payment-intent', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            items: cartStore.cart,
-            payment_intent_id: cartStore.paymentIntent,
-        })
-    }).then((res) => {
-        if(res.status === 403) {
-            return router.push('/api/auth/signin')
-        }
-        return res.json()
-    }).then((data) => {
-        console.log(data)
-    })
-
-    }, [])
+        fetch("/api/create-payment-intent", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              items: cartStore.cart,
+              payment_intent_id: cartStore.paymentIntent,
+            }),
+          })
+            .then((res) => {
+              if (res.status === 403) {
+                return router.push("/api/auth/signin")
+              }
+              return res.json()
+            })
+            .then((data) => {
+              setClientSecret(data.paymentIntent.client_secret)
+              cartStore.setPaymentIntent(data.paymentIntent.id)
+            })
+        }, [])
 
     return (
         <div>
